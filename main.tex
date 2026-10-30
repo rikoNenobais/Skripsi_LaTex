@@ -115,10 +115,16 @@ For glossaries to work, we also need to compile with makeglossaries, so in VSCod
 
 %TODO: Set title details
 %============================ Title details =================================%
-\def\title{TITLE}
-\def\englishtitle{ENGLISH TITLE}
-\def\author{NAME}
-\def\nim{NIM}
+\def\title{Adaptive Exploration Strategies in
+Deep Reinforcement Learning for
+Task Offloading under Non-Stationary
+Workloads in Mobile Edge Computing}
+\def\englishtitle{Adaptive Exploration Strategies in
+Deep Reinforcement Learning for
+Task Offloading under Non-Stationary
+Workloads in Mobile Edge Computing}
+\def\author{Benrycho Willyam R. Nenobais}
+\def\nim{235314159}
 \def\prodi{Informatika}
 \def\program{Informatics}
 \def\fakultas{Sains dan Teknologi}
@@ -146,6 +152,7 @@ For glossaries to work, we also need to compile with makeglossaries, so in VSCod
 { \DeclareLanguageMapping{indonesian}{indonesian} } % map babel 'indonesian' -> indonesian.lbx
 { \AtBeginBibliography{\selectlanguage{indonesian}} } % pastikan daftar pustaka pakai string dlm LBX
 \addbibresource{examplecitations.bib}
+\addbibresource{Skripsi/Daftar_Pustaka/daftar_pustaka.bib}
 
 
 
@@ -607,7 +614,7 @@ path picture={\draw
 		\vspace{2ex}
 
 		Diajukan untuk memenuhi salah satu syarat
-		\\memperoleh gelar Sarjana \sarjana 
+		\\memperoleh gelar \sarjana 
 		\\Program Studi \prodi
 
 
@@ -667,8 +674,11 @@ path picture={\draw
 % \end{titlepage}
 
 %=================== Front matters =======================%
-% Bastracts, page of thanks, table of content/figures/etc
+% Dinonaktifkan sementara agar fokus di Bab 1
+% Untuk mengaktifkan kembali, hapus blok komentar ini
 \frontmatter
+
+\begin{comment}
 %=====================Inner title==========================%
 
 
@@ -974,19 +984,18 @@ Put your Motto here.\\
 \begin{quotation}
 	\noindent \subimport{Front_matters}{abstract_english}
 \end{quotation}
+\end{comment}
 
-
-%====================== Table of contents number formatting ========================%
-
+%====================== Table of contents ========================%
 
 \setcounter{tocdepth}{2}
-% \setcounter{tocdepth}{3} % Sets depth to 3 so it includes subsubsections. Adjust as needed
-\renewcommand{\thechapter}{\Roman{chapter}} % Makes chapter numbering roman numeral
+\renewcommand{\thechapter}{\Roman{chapter}}
 \clearpage
 \tableofcontents
 
+\begin{comment}
 \setcounter{tocdepth}{2}
-\renewcommand{\thechapter}{\arabic{chapter}} % Makes chapter numbering roman numeral
+\renewcommand{\thechapter}{\arabic{chapter}}
 
 \clearpage
 \listoftables
@@ -1009,6 +1018,7 @@ Put your Motto here.\\
 \phantomsection
 \addcontentsline{toc}{chapter}{DAFTAR LAMPIRAN}
 \listofmylampiran
+\end{comment}
 
 \renewcommand{\thechapter}{\Roman{chapter}} % Makes chapter numbering roman numeral
 
@@ -1050,6 +1060,9 @@ Put your Motto here.\\
 % \clearpage
 % \subimport{Skripsi/Kesimpulan}{kesimpulan}
 
+\clearpage
+\subimport{Skripsi/Daftar_Pustaka}{daftar_pustaka}
+
 % \clearpage
 % \subimport{Skripsi/Example_Chapter}{example_chapter}
 
@@ -1066,8 +1079,9 @@ Put your Motto here.\\
 
 \end{doublespace}
 %================= Back matters ===================%
-% Bibliography and attachments/appendices
+% Bibliography and attachments/appendices (dinonaktifkan sementara)
 
+\begin{comment}
 \backmatter
 \clearpage
 \printbibliography[
@@ -1084,6 +1098,7 @@ LLM tidak digunakan untuk membuat ide atau konsep penelitian yang ada pada skrip
 \appendix
 \clearpage
 \subimport{Back_matters}{lampiran}
+\end{comment}
 
 \clearpage
 \end{document}

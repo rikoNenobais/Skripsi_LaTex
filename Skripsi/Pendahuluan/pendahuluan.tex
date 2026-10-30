@@ -2,35 +2,113 @@
 
 \section{Latar Belakang}
 \label{sec:latar_belakang}
-Perkembangan \textit{Internet of Things} (IoT) dan perangkat \textit{mobile} meningkatkan kebutuhan terhadap layanan komputasi yang mampu memproses data dengan cepat. Namun, perangkat \textit{mobile} memiliki keterbatasan sumber daya komputasi dan energi. \textit{Mobile Edge Computing} (MEC) menjadi salah satu solusi dengan menyediakan sumber daya komputasi yang lebih dekat dengan pengguna. Melalui mekanisme \textit{task offloading}, tugas komputasi dapat dialihkan dari perangkat \textit{mobile} ke \textit{edge server} sehingga berpotensi mengurangi waktu pemrosesan dan penggunaan energi (Yousefpour \textit{et al.}, 2019; Acheampong \textit{et al.}, 2023).
+Perkembangan \textit{Internet of Things} (IoT) dan perangkat \textit{mobile} meningkatkan kebutuhan terhadap layanan komputasi yang mampu memproses data dengan cepat. Namun, perangkat \textit{mobile} memiliki keterbatasan sumber daya komputasi dan energi. \textit{Mobile Edge Computing} (MEC) menjadi salah satu solusi dengan menyediakan sumber daya komputasi yang lebih dekat dengan pengguna. Melalui mekanisme \textit{task offloading}, tugas komputasi dapat dialihkan dari perangkat \textit{mobile} ke \textit{edge server} sehingga berpotensi mengurangi waktu pemrosesan dan penggunaan energi \cite{yousefpour2019all, acheampong2023review}.
 
-Meskipun demikian, keputusan \textit{task offloading} memiliki tantangan karena harus mempertimbangkan kondisi jaringan, beban server, dan antrean tugas. Ketika banyak perangkat mengirimkan tugas secara bersamaan, beban \textit{edge server} dapat meningkat sehingga menyebabkan keterlambatan atau tugas tidak selesai sebelum batas waktu (\textit{deadline}). Tang dan Wong (2022) mengusulkan pendekatan \textit{Deep Reinforcement Learning} (DRL) dengan kombinasi LSTM, \textit{Dueling} DQN, dan \textit{Double} DQN untuk mempelajari keputusan \textit{offloading}. Pendekatan tersebut mampu mengurangi \textit{task drop ratio} dan \textit{average delay} dalam skenario pengujian yang digunakan.
+Meskipun demikian, keputusan \textit{task offloading} memiliki tantangan karena harus mempertimbangkan kondisi jaringan, beban server, dan antrean tugas secara dinamis. Ketika banyak perangkat mengirimkan tugas secara bersamaan tanpa koordinasi terpusat, beban \textit{edge server} dapat meningkat secara tiba-tiba sehingga menyebabkan keterlambatan atau tugas tidak selesai sebelum batas waktu (\textit{deadline}). Tang dan Wong \cite{tang2022deep} mengusulkan pendekatan \textit{Distributed Deep Reinforcement Learning} (DRL) dengan kombinasi LSTM, \textit{Dueling} DQN, dan \textit{Double} DQN (LSTM-D3QN) di mana setiap perangkat \textit{mobile} mempelajari keputusan \textit{offloading} secara mandiri berdasarkan observasi lokal dan riwayat pemanfaatan server. Pendekatan tersebut mampu mengurangi \textit{task drop ratio} dan \textit{average delay} dalam skenario pengujian dengan pola beban kerja yang stasioner.
 
-Namun, kondisi \textit{workload} dalam lingkungan MEC tidak selalu tetap. Perubahan jumlah maupun karakteristik tugas yang datang dapat menyebabkan distribusi \textit{workload} berubah dari waktu ke waktu (\textit{non-stationary workload}). Perubahan ini dapat membuat kebijakan yang sebelumnya dipelajari menjadi kurang sesuai dengan kondisi lingkungan saat ini. Salah satu aspek yang memengaruhi kemampuan adaptasi agen DRL adalah keseimbangan \textit{exploration} dan \textit{exploitation}. Zhu \textit{et al.} (2022) mengembangkan \textit{self-adjusting deep Q-learning} yang memanfaatkan ketidakpastian model untuk menyesuaikan eksplorasi ketika lingkungan berubah. Sementara itu, Kumar dan Singh (2024) menerapkan \textit{adaptive epsilon-greedy} pada lingkungan keamanan IoT-\textit{Edge}. Kedua penelitian tersebut menunjukkan bahwa strategi eksplorasi adaptif telah dikaji, tetapi pada konteks permasalahan yang berbeda dari \textit{task offloading} MEC.
+Namun, kondisi \textit{workload} dalam lingkungan MEC nyata tidak selalu tetap (\textit{non-stationary workload}). Perubahan jumlah maupun karakteristik tugas yang datang dari waktu ke waktu dapat menggeser distribusi beban kerja dan dinamika antrean pada \textit{edge server}. Pada algoritma DRL dengan strategi eksplorasi standar seperti $\epsilon$-greedy, laju eksplorasi akan meluruh hingga nilai minimum seiring berjalannya pelatihan. Akibatnya, ketika terjadi perubahan pola \textit{workload} setelah kebijakan agen konvergen, masing-masing agen perangkat cenderung terjebak pada eksploitasi kebijakan lama yang sudah tidak optimal terhadap kondisi lingkungan saat ini. Oleh karena itu, keseimbangan \textit{exploration} dan \textit{exploitation} yang mampu menyesuaikan diri kembali saat lingkungan berubah menjadi faktor krusial. Zhu dkk. \cite{zhu2022adaptive} mengembangkan \textit{self-adjusting deep Q-learning} yang memanfaatkan ketidakpastian model (\textit{model uncertainty}) untuk menyesuaikan eksplorasi ketika lingkungan berubah. Sementara itu, Kumar dan Singh \cite{kumar2024adaptive} menerapkan \textit{adaptive epsilon-greedy} pada lingkungan keamanan IoT-\textit{Edge}. Kedua penelitian tersebut menunjukkan bahwa strategi eksplorasi adaptif berpotensi meningkatkan kemampuan adaptasi agen, tetapi belum dievaluasi pada konteks permasalahan \textit{task offloading} MEC terdistribusi dengan perubahan pola \textit{workload}.
 
-Berdasarkan hal tersebut, penelitian ini berfokus pada evaluasi strategi \textit{exploration}--\textit{exploitation} dalam meningkatkan kemampuan adaptasi DRL untuk \textit{task offloading} pada lingkungan MEC dengan \textit{non-stationary workload}. Arsitektur LSTM-D3QN dipertahankan, sedangkan strategi eksplorasi menjadi variabel yang dibandingkan, yaitu \textit{epsilon-greedy}, \textit{adaptive epsilon-greedy}, dan eksplorasi berbasis ketidakpastian model. Evaluasi dilakukan pada beberapa pola perubahan \textit{workload} dengan memperhatikan \textit{task drop ratio}, \textit{average delay}, \textit{average cost}, dan waktu pemulihan (\textit{recovery time}). Dengan demikian, penelitian ini diharapkan dapat memberikan gambaran mengenai pengaruh strategi eksplorasi terhadap kemampuan adaptasi kebijakan DRL ketika menghadapi perubahan \textit{workload}.
+Berdasarkan hal tersebut, penelitian ini berfokus pada evaluasi strategi \textit{exploration}--\textit{exploitation} dalam meningkatkan kemampuan adaptasi DRL untuk \textit{task offloading} pada lingkungan MEC dengan \textit{non-stationary workload}. Arsitektur LSTM-D3QN dipertahankan, sedangkan strategi eksplorasi menjadi variabel yang dibandingkan, yaitu \textit{epsilon-greedy}, \textit{adaptive epsilon-greedy}, dan eksplorasi berbasis ketidakpastian model (\textit{model uncertainty}). Evaluasi dilakukan pada beberapa pola perubahan \textit{workload} dengan memperhatikan \textit{task drop ratio}, \textit{average delay}, \textit{average cost}, dan waktu pemulihan (\textit{recovery time}). Dengan demikian, penelitian ini diharapkan dapat memberikan gambaran mengenai pengaruh strategi eksplorasi terhadap kemampuan adaptasi kebijakan DRL ketika menghadapi perubahan \textit{workload}.
 
+\clearpage
 \section{Rumusan Masalah}
 \label{sec:rumusan_masalah}
 
 Berdasarkan latar belakang yang telah diuraikan, rumusan masalah dalam penelitian ini adalah:
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
 	\item Bagaimana pengaruh perubahan pola \textit{workload non-stationary} terhadap kinerja algoritma LSTM-D3QN dalam melakukan \textit{task offloading} pada lingkungan \textit{Mobile Edge Computing}?
-	\item Bagaimana perbandingan kinerja strategi \textit{epsilon-greedy}, \textit{adaptive epsilon-greedy}, dan eksplorasi berbasis ketidakpastian model dalam menghadapi perubahan \textit{workload}?
+	\item Bagaimana perbandingan kinerja strategi \textit{epsilon-greedy}, \textit{adaptive epsilon-greedy}, dan eksplorasi berbasis ketidakpastian model (\textit{model uncertainty}) dalam menghadapi perubahan \textit{workload}?
 	\item Strategi eksplorasi manakah yang memiliki kemampuan adaptasi terbaik berdasarkan \textit{task drop ratio}, \textit{average delay}, \textit{average cost}, dan \textit{recovery time} setelah terjadi perubahan \textit{workload}?
 \end{enumerate}
 
 \section{Batasan Masalah}
-\label{sec:Batasan Masalah}
-\section{Tujuan Penelitian}
-\label{sec:Tujuan Penelitian}
-\section{Manfaat Penelitian}
-\label{sec:Manfaat Penelitian}
-\section{Metodologi Penelitian}
-\label{sec:Metodologi Penelitian}
-\section{Sistematika Penulisan}
-\label{sec:Sistematika Penulisan}
+\label{sec:batasan_masalah}
 
+Agar penelitian lebih terarah dan tidak meluas dari tujuan yang telah ditetapkan, batasan masalah dalam penelitian ini adalah sebagai berikut:
+\begin{enumerate}[leftmargin=*]
+	\item Penelitian berfokus pada permasalahan \textit{task offloading} dalam lingkungan \textbf{\textit{Mobile Edge Computing} (MEC)} dengan kondisi \textit{workload non-stationary}.
+	\item Pengambilan keputusan \textit{task offloading} menggunakan pendekatan \textit{Distributed Deep Reinforcement Learning} yang beroperasi secara terdesentralisasi, di mana setiap perangkat \textit{mobile} menjalankan agen pembelajaran mandiri (\textit{independent learner}) dengan parameter jaringan dan memori pengalaman lokal masing-masing untuk menentukan keputusan \textit{offloading} ke sumber daya komputasi yang tersedia tanpa komunikasi antar-perangkat.
+	\item Arsitektur algoritma yang digunakan adalah \textbf{LSTM-D3QN}. Arsitektur jaringan dan konfigurasi pembelajaran dipertahankan sama selama eksperimen sehingga penelitian berfokus pada pengaruh strategi eksplorasi.
+	\item Strategi eksplorasi yang dibandingkan meliputi:
+	\begin{itemize}[leftmargin=*]
+		\item \textit{Epsilon-greedy} sebagai strategi dasar.
+		\item \textit{Adaptive epsilon-greedy} sebagai strategi eksplorasi adaptif.
+		\item Eksplorasi berbasis ketidakpastian model (\textit{model uncertainty}) yang mengacu pada pendekatan \textit{self-adjusting deep Q-learning} oleh Zhu dkk. \cite{zhu2022adaptive}.
+	\end{itemize}
+	\item Pengujian dilakukan melalui simulasi dengan beberapa skenario \textit{workload}, yaitu kondisi stasioner sebagai pembanding, perubahan bertahap (\textit{gradual shift}), perubahan mendadak (\textit{sudden shift}), pola kedatangan tugas yang bersifat \textit{bursty}, dan pola \textit{Markov-modulated stochastic}.
+	\item Evaluasi kinerja dibatasi pada empat metrik, yaitu \textit{task drop ratio}, \textit{average delay}, \textit{average cost}, dan \textit{recovery time} setelah terjadi perubahan \textit{workload}. Penelitian tidak membahas implementasi pada perangkat MEC nyata.
+\end{enumerate}
+
+\clearpage
+\section{Tujuan Penelitian}
+\label{sec:tujuan_penelitian}
+
+Tujuan yang ingin dicapai dalam penelitian ini adalah:
+\begin{enumerate}[leftmargin=*]
+	\item Menganalisis pengaruh perubahan pola \textit{workload non-stationary} terhadap kinerja algoritma LSTM-D3QN dalam melakukan \textit{task offloading} pada lingkungan \textit{Mobile Edge Computing}.
+	\item Membandingkan kinerja strategi \textit{epsilon-greedy}, \textit{adaptive epsilon-greedy}, dan eksplorasi berbasis ketidakpastian model (\textit{model uncertainty}) dalam menghadapi perubahan \textit{workload}.
+	\item Mengidentifikasi strategi eksplorasi yang memiliki kemampuan adaptasi terbaik berdasarkan metrik \textit{task drop ratio}, \textit{average delay}, \textit{average cost}, dan \textit{recovery time} setelah terjadi perubahan \textit{workload}.
+\end{enumerate}
+
+\section{Manfaat Penelitian}
+\label{sec:manfaat_penelitian}
+
+Penelitian ini diharapkan dapat memberikan manfaat sebagai berikut:
+\begin{enumerate}[leftmargin=*]
+	\item \textbf{Manfaat Teoritis}\\
+	Penelitian ini diharapkan dapat memberikan kontribusi terhadap pengembangan kajian \textit{Deep Reinforcement Learning}, khususnya mengenai penerapan strategi eksplorasi adaptif untuk menghadapi perubahan \textit{workload non-stationary} pada permasalahan \textit{task offloading} di lingkungan \textit{Mobile Edge Computing}. Selain itu, penelitian ini dapat menjadi referensi untuk penelitian selanjutnya yang membahas kemampuan adaptasi algoritma \textit{Reinforcement Learning} dalam lingkungan yang dinamis.
+	
+	\item \textbf{Manfaat Praktis}\\
+	Penelitian ini diharapkan dapat memberikan gambaran mengenai pengaruh penggunaan strategi eksplorasi yang berbeda terhadap kinerja algoritma LSTM-D3QN dalam menghadapi perubahan \textit{workload}. Hasil perbandingan dapat menjadi bahan pertimbangan dalam pemilihan strategi eksplorasi untuk meningkatkan kemampuan adaptasi sistem \textit{task offloading}, terutama dalam mengurangi \textit{task drop ratio}, \textit{average delay}, dan \textit{average cost}, serta mempercepat pemulihan kinerja setelah terjadi perubahan \textit{workload}.
+\end{enumerate}
+
+\section{Metodologi Penelitian}
+\label{sec:metodologi_penelitian}
+
+Metodologi yang digunakan dalam penelitian ini adalah metode eksperimental berbasis simulasi. Penelitian dilakukan melalui beberapa tahapan sebagai berikut:
+\begin{enumerate}[leftmargin=*]
+	\item \textbf{Studi Literatur}\\
+	Mengumpulkan dan mempelajari literatur yang berkaitan dengan \textit{Mobile Edge Computing}, \textit{task offloading}, \textit{Deep Reinforcement Learning}, lingkungan \textit{non-stationary}, serta strategi \textit{exploration}--\textit{exploitation} sebagai dasar dalam perancangan penelitian.
+	
+	\item \textbf{Perancangan Lingkungan Simulasi}\\
+	Merancang lingkungan simulasi \textit{Mobile Edge Computing} yang terdiri dari beberapa perangkat pengguna (\textit{mobile devices}) dan sumber daya komputasi \textit{edge} (\textit{edge nodes}). Sistem menerapkan skema terdistribusi (\textit{distributed DRL}) di mana setiap perangkat pengguna bertindak sebagai agen independen yang mengambil keputusan \textit{task offloading} berdasarkan observasi lokalnya. Lingkungan simulasi dirancang untuk menghasilkan beberapa pola \textit{workload}, baik stasioner maupun non-stasioner.
+	
+	\item \textbf{Implementasi Algoritma}\\
+	Mengimplementasikan algoritma LSTM-D3QN dengan tiga strategi eksplorasi yang berbeda, yaitu \textit{epsilon-greedy}, \textit{adaptive epsilon-greedy}, dan eksplorasi berbasis ketidakpastian model (\textit{model uncertainty}). Arsitektur jaringan dan parameter pembelajaran utama dipertahankan sama agar perbandingan berfokus pada strategi eksplorasi.
+	
+	\item \textbf{Pengujian dan Pengumpulan Data}\\
+	Melakukan eksperimen terhadap setiap strategi eksplorasi pada beberapa skenario \textit{workload}, meliputi kondisi stasioner, perubahan bertahap (\textit{gradual shift}), perubahan mendadak (\textit{sudden shift}), pola kedatangan tugas \textit{bursty}, dan pola \textit{Markov-modulated stochastic}. Hasil setiap eksperimen dicatat untuk keperluan analisis.
+	
+	\item \textbf{Analisis dan Evaluasi Hasil}\\
+	Menganalisis hasil eksperimen berdasarkan metrik \textit{task drop ratio}, \textit{average delay}, \textit{average cost}, dan \textit{recovery time}. Hasil pengujian kemudian dibandingkan untuk mengetahui pengaruh masing-masing strategi eksplorasi terhadap kinerja dan kemampuan adaptasi algoritma LSTM-D3QN dalam menghadapi perubahan \textit{workload}.
+	
+	\item \textbf{Penarikan Kesimpulan}\\
+	Menarik kesimpulan berdasarkan hasil analisis untuk menjawab rumusan masalah dan menentukan strategi eksplorasi yang menunjukkan kemampuan adaptasi terbaik pada skenario pengujian.
+\end{enumerate}
+
+\section{Sistematika Penulisan}
+\label{sec:sistematika_penelitian}
+
+Sistematika penulisan dalam penelitian ini disusun ke dalam lima bab dengan uraian sebagai berikut:
+
+\noindent\textbf{BAB I PENDAHULUAN}\\
+Bab ini membahas latar belakang penelitian, rumusan masalah, batasan masalah, tujuan penelitian, manfaat penelitian, metodologi penelitian, dan sistematika penulisan.
+
+\vspace{0.5em}
+\noindent\textbf{BAB II TINJAUAN PUSTAKA}\\
+Bab ini membahas teori dan konsep yang menjadi dasar penelitian, meliputi \textit{Mobile Edge Computing}, \textit{task offloading}, \textit{Reinforcement Learning}, \textit{Deep Reinforcement Learning}, arsitektur LSTM-D3QN, strategi \textit{exploration}--\textit{exploitation}, serta penelitian terdahulu yang relevan.
+
+\vspace{0.5em}
+\noindent\textbf{BAB III METODOLOGI PENELITIAN}\\
+Bab ini menjelaskan tahapan penelitian secara terperinci, meliputi perancangan lingkungan simulasi, pemodelan sistem \textit{task offloading}, implementasi algoritma LSTM-D3QN, penerapan strategi eksplorasi, skenario pengujian \textit{workload}, serta metrik evaluasi yang digunakan.
+
+\vspace{0.5em}
+\noindent\textbf{BAB IV HASIL DAN PEMBAHASAN}\\
+Bab ini menyajikan hasil pengujian dan analisis kinerja setiap strategi eksplorasi pada berbagai skenario \textit{workload}. Pembahasan difokuskan pada perbandingan \textit{task drop ratio}, \textit{average delay}, \textit{average cost}, dan \textit{recovery time} untuk mengevaluasi kemampuan adaptasi algoritma terhadap perubahan \textit{workload}.
+
+\vspace{0.5em}
+\noindent\textbf{BAB V KESIMPULAN DAN SARAN}\\
+Bab ini berisi kesimpulan berdasarkan hasil penelitian untuk menjawab rumusan masalah serta saran yang dapat digunakan sebagai bahan pengembangan dan penelitian selanjutnya.
 
 % =========================================================================
 % Bagian contoh dari template bawaan (disimpan untuk referensi pembuatan tabel/gambar)

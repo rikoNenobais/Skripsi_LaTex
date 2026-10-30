@@ -74,7 +74,7 @@
 \def\program{Informatics}
 \def\fakultas{Sains dan Teknologi}
 \def\faculty{Science and Technology}
-\def\sarjana{S. Kom}
+\def\sarjana{Sarjana Komputer}
 \def\pembimbing{PEMBIMBING}
 \def\ketuapenguji{KETUA PENGUJI}
 \def\sekretarispenguji{SEKRETARIS PENGUJI}
@@ -97,6 +97,7 @@
 	]{biblatex}
 %TODO: Set citation bib file
 \addbibresource{examplecitations.bib}
+\addbibresource{Skripsi/Daftar_Pustaka/daftar_pustaka.bib}
 
 
 
@@ -407,292 +408,297 @@ path picture={\draw
 
 %================== Custom title page ================%
 % TODO: Check if title page is correct or not
-% \begin{titlepage}
-% 	\begin{center}
-% 		\large
-% 		\textbf{\MakeUppercase{\title}}
-% 		\vspace{2ex}
+\begin{titlepage}
+	\begin{center}
+		\large
+		\textbf{\MakeUppercase{\title}}
+		\vspace{2ex}
 
 
-% 		\textbf{SKRIPSI}
+		\textbf{SKRIPSI}
 
-% 		\vspace{2ex}
+		\vspace{2ex}
 
-% 		Diajukan untuk memenuhi salah satu syarat memeroleh gelar Sarjana \sarjana \\Program Studi \prodi
+		Diajukan untuk memenuhi salah satu syarat memperoleh gelar \sarjana \\Program Studi \prodi
 
 
-% 		\vspace{3cm}
-% 		\includegraphics[width=5cm]{SANATA_DHARMA.jpg}\\
-% 		\vspace{1.5cm}
-% 		Disusun oleh:\\
-% 		\author\\
-% 		NIM: \nim\\
+		\vspace{3cm}
+		\includegraphics[width=5cm]{SANATA_DHARMA.jpg}\\
+		\vspace{1.5cm}
+		Disusun oleh:\\
+		\author\\
+		NIM: \nim\\
 
-% 		\vspace{2cm}
+		\vspace{2cm}
 
-% 		\textbf{
-% 			\MakeUppercase{
-% 				Program Studi \prodi\\
-% 				Fakultas \fakultas\\
-% 				Universitas Sanata Dharma\\
-% 				Yogyakarta\\
-% 				\the\year{}\\
-% 			}
-% 		}
-% 	\end{center}
-% \end{titlepage}
+		\textbf{
+			\MakeUppercase{
+				Program Studi \prodi\\
+				Fakultas \fakultas\\
+				Universitas Sanata Dharma\\
+				Yogyakarta\\
+				\the\year{}\\
+			}
+		}
+	\end{center}
+\end{titlepage}
 
 
 
 %=================== Front matters =======================%
-% Bastracts, page of thanks, table of content/figures/etc
+% Dinonaktifkan sementara agar fokus di Bab 1
 \frontmatter
+
+\begin{comment}
 %=====================Inner title==========================%
 
 
 %======================English Title======================%
-% \clearpage
-% \begin{center}
-% 	\large
-% 	\textbf{\MakeUppercase{\englishtitle}}
-% 	\vspace{2ex}
+\clearpage
+\begin{center}
+	\large
+	\textbf{\MakeUppercase{\englishtitle}}
+	\vspace{2ex}
 	
 	
-% 	\textbf{THESIS}
+	\textbf{THESIS}
 	
-% 	\vspace{2ex}
+	\vspace{2ex}
 	
-% 	Presented as a requirement
-% 	\\to obtain the title of \textit{Sarjana \sarjana}
-% 	\\Informatics Study Program
+	Presented as a requirement
+	\\to obtain the title of \textit{Sarjana \sarjana}
+	\\Informatics Study Program
 	
-% 	\vspace{3cm}
-% 	\includegraphics[width=5cm]{SANATA_DHARMA.jpg}\\
-% 	\vspace{1.5cm}
-% 	Written By:\\
-% 	\author\\
-% 	NIM: \nim\\
+	\vspace{3cm}
+	\includegraphics[width=5cm]{SANATA_DHARMA.jpg}\\
+	\vspace{1.5cm}
+	Written By:\\
+	\author\\
+	NIM: \nim\\
 	
-% 	\vspace{2cm}
+	\vspace{2cm}
 	
-% 	\textbf{
-% 		\MakeUppercase{
-% 			\program Study Program\\
-% 			Faculty of \faculty\\
-% 			Sanata Dharma University\\
-% 			Yogyakarta\\
-% 			\the\year{}\\
-% 		}
-% 	}
-% \end{center}
+	\textbf{
+		\MakeUppercase{
+			\program Study Program\\
+			Faculty of \faculty\\
+			Sanata Dharma University\\
+			Yogyakarta\\
+			\the\year{}\\
+		}
+	}
+\end{center}
 
 
 %====================== Approval ==========================%
 %TODO: Change this to your own. Comment out if not used yet
-% \clearpage
-% \chapter{\centering Halaman Persetujuan Pembimbing}
-% \begin{center}
+\clearpage
+\chapter{\centering Halaman Persetujuan Pembimbing}
+\begin{center}
 	
-% %	\BgThispage
-% 	\vspace{1cm}
-% 	\textbf{SKRIPSI}\\
-% 	\vspace{0.5cm}
-% 	\large
-% 	\MakeMarkcase{\textbf{\title}}\\
+%	\BgThispage
+	\vspace{1cm}
+	\textbf{SKRIPSI}\\
+	\vspace{0.5cm}
+	\large
+	\MakeMarkcase{\textbf{\title}}\\
 	
-% 	\vspace{6cm}
-% 	Disusun Oleh:\\
-% 	\author\\
-% 	NIM: \nim\\
+	\vspace{6cm}
+	Disusun Oleh:\\
+	\author\\
+	NIM: \nim\\
 	
 	
-% 	\vspace{5cm}
-% 	\begin{tabularx}{\textwidth}{
-% 			>{\raggedright\arraybackslash}X
-% 			>{\centering\arraybackslash}X
-% 		}
-% 		Dosen Pembimbing,& \\
-% 		&\\
-% 		&\\
-% 		&\\
-% 		&\\
-% 		\pembimbing & <DATE OF DEFENSE>
-% 	\end{tabularx}
-% \end{center}
+	\vspace{5cm}
+	\begin{tabularx}{\textwidth}{
+			>{\raggedright\arraybackslash}X
+			>{\centering\arraybackslash}X
+		}
+		Dosen Pembimbing,& \\
+		&\\
+		&\\
+		&\\
+		&\\
+		\pembimbing & <DATE OF DEFENSE>
+	\end{tabularx}
+\end{center}
 
 
 %======================= Pengesahan =====================%
 
-% \clearpage
-% \chapter{\centering Halaman Pengesahan}
-% \begin{center}
+\clearpage
+\chapter{\centering Halaman Pengesahan}
+\begin{center}
 	
-% %	\BgThispage
-% 	\normalsize
-% 	\vspace{1cm}
-% 	\textbf{SKRIPSI}\\
-% 	\vspace{0.5cm}
+%	\BgThispage
+	\normalsize
+	\vspace{1cm}
+	\textbf{SKRIPSI}\\
+	\vspace{0.5cm}
 	
-% 	\MakeMarkcase{\textbf{\title}}\\
+	\MakeMarkcase{\textbf{\title}}\\
 	
-% 	\vspace{2cm}
-% 	Dipersiapkan dan ditulis oleh:\\
-% 	\author\\
-% 	NIM: \nim\\
+	\vspace{2cm}
+	Dipersiapkan dan ditulis oleh:\\
+	\author\\
+	NIM: \nim\\
 	
-% 	\vspace{2cm}
-% 	\textbf{SUSUNAN DEWAN PENGUJI}\\
+	\vspace{2cm}
+	\textbf{SUSUNAN DEWAN PENGUJI}\\
 	
 	
-% 	\vspace{1cm}
-% 	\begin{tabularx}{\textwidth}{
-% 			>{\raggedright\arraybackslash}m{2cm}
-% 			>{\raggedright\arraybackslash}m{7cm}
-% 			>{\raggedright\arraybackslash}X
-% 		}
-% 		\renewcommand{\arraystretch}{2.3}
-% 		\textbf{JABATAN} &  \centering\textbf{NAMA LENGKAP} & \textbf{TANDA TANGAN}\\
+	\vspace{1cm}
+	\begin{tabularx}{\textwidth}{
+			>{\raggedright\arraybackslash}m{2cm}
+			>{\raggedright\arraybackslash}m{7cm}
+			>{\raggedright\arraybackslash}X
+		}
+		\renewcommand{\arraystretch}{2.3}
+		\textbf{JABATAN} &  \centering\textbf{NAMA LENGKAP} & \textbf{TANDA TANGAN}\\
 
-% 		Ketua (merangkap anggota) & \ketuapenguji & \\
-% 		& &\\
-% 		Sekretaris (merangkap anggota) & \sekretarispenguji & \\
-% 		& &\\
-% 		Anggota & \pembimbing & 
-% 	\end{tabularx}
+		Ketua (merangkap anggota) & \ketuapenguji & \\
+		& &\\
+		Sekretaris (merangkap anggota) & \sekretarispenguji & \\
+		& &\\
+		Anggota & \pembimbing & 
+	\end{tabularx}
 	
-% 	\vspace{3cm}
+	\vspace{3cm}
 	
-% 	\begin{tabularx}{\textwidth}{
-% 		>{\raggedright\arraybackslash}m{5cm}
-% 		>{\raggedleft\arraybackslash}X
-% 		}
-% 		& Yogyakarta, ..........................\\
-% 		& Fakultas Sains dan Teknologi \\
-% 		& Dekan,\\
-% 		&\\
-% 		&\\
-% 		&\\
-% 		& \dekan
-% 	\end{tabularx}
-% \end{center}
+	\begin{tabularx}{\textwidth}{
+		>{\raggedright\arraybackslash}m{5cm}
+		>{\raggedleft\arraybackslash}X
+		}
+		& Yogyakarta, ..........................\\
+		& Fakultas Sains dan Teknologi \\
+		& Dekan,\\
+		&\\
+		&\\
+		&\\
+		& \dekan
+	\end{tabularx}
+\end{center}
 
 
 %====================== Authenticity ===================%
 
-% \clearpage
-% \chapter{\centering HALAMAN PERNYATAAN KEASLIAN KARYA}
-% \begin{doublespace}
-% 	Saya menyatakan bahwa dengan sesungguhnya bahwa skripsi yang saya tulis ini tidak memuat karya atau bagian karya orang lain, kecuali yang telah disebutkan dalam kutipan dan daftar pustaka dengan mengikuti ketentuan sebagaimana layaknya karya ilmiah.
+\clearpage
+\chapter{\centering HALAMAN PERNYATAAN KEASLIAN KARYA}
+\begin{doublespace}
+	Saya menyatakan bahwa dengan sesungguhnya bahwa skripsi yang saya tulis ini tidak memuat karya atau bagian karya orang lain, kecuali yang telah disebutkan dalam kutipan dan daftar pustaka dengan mengikuti ketentuan sebagaimana layaknya karya ilmiah.
 	
-% 	Apabila di kemudian hari ditemukan indikasi plagiarisme dalam naskah ini, saya bersedia menanggung segala saksi sesuai peraturan dan perundang-undangan yang berlaku
+	Apabila di kemudian hari ditemukan indikasi plagiarisme dalam naskah ini, saya bersedia menanggung segala saksi sesuai peraturan dan perundang-undangan yang berlaku
 	
-% 	\vspace{5cm}
-% 	\begin{tabularx}{\textwidth}{
-% 			>{\raggedright\arraybackslash}m{7cm}
-% 			>{\raggedleft\arraybackslash}X
-% 		}
-% 		& Yogyakarta, ..........................\\
-% 		& Penulis,\\
-% 		&\\
-% 		&\\
-% 		& \author
-% 	\end{tabularx}
-% \end{doublespace}
+	\vspace{5cm}
+	\begin{tabularx}{\textwidth}{
+			>{\raggedright\arraybackslash}m{7cm}
+			>{\raggedleft\arraybackslash}X
+		}
+		& Yogyakarta, ..........................\\
+		& Penulis,\\
+		&\\
+		&\\
+		& \author
+	\end{tabularx}
+\end{doublespace}
 
 %====================== Publication ====================%
-% \clearpage
-% \chapter{\centering LEMBAR PERSETUJUAN PUBLIKASI}
-% \noindent Yang bertanda tangan di bawah ini, saya mahasiswa Universitas Sanata Dharma:
-% \begin{itemize}[label={}]
-% 	\item Nama\quad: \author
-% 	\item NIM\quad: \nim
-% \end{itemize}
+\clearpage
+\chapter{\centering LEMBAR PERSETUJUAN PUBLIKASI}
+\noindent Yang bertanda tangan di bawah ini, saya mahasiswa Universitas Sanata Dharma:
+\begin{itemize}[label={}]
+	\item Nama\quad: \author
+	\item NIM\quad: \nim
+\end{itemize}
 
-% \noindent Demi perkembangan ilmu pengetahuan, saya memerikan kepada Perpustakaan Universitas Sanata Dharma karya ilmiah saya yang berjudul:
-% \vspace{1cm}
-% \begin{center}
-% 	\textbf{"\title"}
-% \end{center}
-% \vspace{1cm}
-% \noindent beserta perangkat yang diperlukan (bila ada). Dengan demikian saya memberikan hak kepada Perpusatakaan Universitas Sanata Dharma baik untuk menyimpan, mngalihkan dalam bentuyk media lain, mengolah dalam bentuk pangkalan data, mendistribusikan secara terbatas, dan memublikasikannya di internet atau media lain untuk kepentingan akademis tanpa perlu meminta izin dari saya atau memberikan royalti kepada saya selama tetap mencantumkan nama saya sebagai penulis.
+\noindent Demi perkembangan ilmu pengetahuan, saya memerikan kepada Perpustakaan Universitas Sanata Dharma karya ilmiah saya yang berjudul:
+\vspace{1cm}
+\begin{center}
+	\textbf{"\title"}
+\end{center}
+\vspace{1cm}
+\noindent beserta perangkat yang diperlukan (bila ada). Dengan demikian saya memberikan hak kepada Perpusatakaan Universitas Sanata Dharma baik untuk menyimpan, mngalihkan dalam bentuyk media lain, mengolah dalam bentuk pangkalan data, mendistribusikan secara terbatas, dan memublikasikannya di internet atau media lain untuk kepentingan akademis tanpa perlu meminta izin dari saya atau memberikan royalti kepada saya selama tetap mencantumkan nama saya sebagai penulis.
 
-% \vspace{2cm}
-% \noindent Demikian pernyataan ini saya buat dengan sebenarnya\\
-% \vspace{1cm}
-
-
-% %TODO: Add date
-% \noindent Dibuat di Yogyakarta\\
-% \noindent Pada tanggal: \\
-% Yang menyatakan,\\
-% \vspace{4cm}
+\vspace{2cm}
+\noindent Demikian pernyataan ini saya buat dengan sebenarnya\\
+\vspace{1cm}
 
 
-% \noindent \author
+%TODO: Add date
+\noindent Dibuat di Yogyakarta\\
+\noindent Pada tanggal: \\
+Yang menyatakan,\\
+\vspace{4cm}
+
+
+\noindent \author
 %====================== Halaman Moto ======================%
-% \clearpage
-% \chapter{Halaman Motto}
+\clearpage
+\chapter{Halaman Motto}
 
-% \vspace{5cm}
+\vspace{5cm}
 
-% %TODO: Add motto
-% \begin{center}
+%TODO: Add motto
+\begin{center}
 
-% \end{center}
+\end{center}
 
 %====================== Kata Pengantar =================%
-% \clearpage
+\clearpage
 
-% \vspace{30pt}
-% \chapter{Kata Pengantar}
-% \vspace{10pt}
+\vspace{30pt}
+\chapter{Kata Pengantar}
+\vspace{10pt}
 
-% \begin{doublespace}
+\begin{doublespace}
 
-% \subimport{Front_matters}{kata_pengantar}
+\subimport{Front_matters}{kata_pengantar}
 	
-% \end{doublespace}
+\end{doublespace}
 
 
 
 %======================= Abstrak ========================%
 %TODO: Add abstract
-% \clearpage
-% \chapter{\centering Abstrak}
-% \begin{quotation}
-% 	\noindent \subimport{Front_matters}{abstract}
-% \end{quotation}
+\clearpage
+\chapter{\centering Abstrak}
+\begin{quotation}
+	\noindent \subimport{Front_matters}{abstract}
+\end{quotation}
 
 
 %=======================Abstract==========================%
-% \clearpage
-% \chapter{\centering Abstract}
-% \begin{quotation}
-% 	\noindent \subimport{Front_matters}{abstract_english}
-% \end{quotation}
+\clearpage
+\chapter{\centering Abstract}
+\begin{quotation}
+	\noindent \subimport{Front_matters}{abstract_english}
+\end{quotation}
+\end{comment}
 
 %====================== Table of contents number formatting ========================%
 
-% \setcounter{tocdepth}{2}
-% \renewcommand{\thechapter}{\Roman{chapter}} % Makes chapter numbering roman numeral
-% \clearpage
-% \tableofcontents
+\setcounter{tocdepth}{2}
+\renewcommand{\thechapter}{\Roman{chapter}} % Makes chapter numbering roman numeral
+\clearpage
+\tableofcontents
 
-% \setcounter{tocdepth}{2}
-% \renewcommand{\thechapter}{\arabic{chapter}} % Makes chapter numbering roman numeral
-% \clearpage
-% \listoffigures
+\begin{comment}
+\setcounter{tocdepth}{2}
+\renewcommand{\thechapter}{\arabic{chapter}} % Makes chapter numbering roman numeral
+\clearpage
+\listoffigures
 
-% \clearpage
-% \listoftables
+\clearpage
+\listoftables
 
 
-% \clearpage
-% \addcontentsline{toc}{chapter}{Daftar Lampiran}
-% \setcounter{tocdepth}{1}
-% %\listoflampiran
+\clearpage
+\addcontentsline{toc}{chapter}{Daftar Lampiran}
+\setcounter{tocdepth}{1}
+%\listoflampiran
 
-% \renewcommand{\thechapter}{\Roman{chapter}} % Makes chapter numbering roman numeral
+\renewcommand{\thechapter}{\Roman{chapter}} % Makes chapter numbering roman numeral
+\end{comment}
 
 
 
@@ -711,6 +717,9 @@ path picture={\draw
 \subimport{Skripsi/Pendahuluan}{pendahuluan}
 % File is in Skripsi/Pendahuluan/pendahuluan.tex
 
+% Bab lain dinonaktifkan sementara agar fokus di Bab 1.
+% Untuk mengaktifkannya kembali, cukup hapus tanda '%' di depan \clearpage dan \subimport.
+
 % \clearpage
 % \subimport{Skripsi/Landasan_Teori}{landasan_teori}
 
@@ -722,6 +731,9 @@ path picture={\draw
 
 % \clearpage
 % \subimport{Skripsi/Kesimpulan}{kesimpulan}
+
+\clearpage
+\subimport{Skripsi/Daftar_Pustaka}{daftar_pustaka}
 
 
 % Importing from the same directory
@@ -736,8 +748,9 @@ path picture={\draw
 
 \end{doublespace}
 %================= Back matters ===================%
-% Bibliography and attachments/appendices
+% Bibliography and attachments/appendices (dinonaktifkan sementara)
 
+\begin{comment}
 \backmatter
 \clearpage
 \printbibliography[
@@ -746,7 +759,7 @@ title=DAFTAR PUSTAKA]
 
 \clearpage
 % This LLM statement is not required by the university, Nara wanted to put this for academic transparency.
-% It is not required to be in the thesis, but it is a good practice to include it.
+% It is not required to be in the thesis, for it is a good practice to include it.
 \textbf{Penggunaan \textit{Large Language Models}} Alat berjenis LLM digunakan untuk membantu pengkodean
 aplikasi, penulisan kalimat, serta pengkodean Latex.
 LLM tidak digunakan untuk membuat ide atau konsep penelitian yang ada pada skripsi ini.
@@ -754,6 +767,7 @@ LLM tidak digunakan untuk membuat ide atau konsep penelitian yang ada pada skrip
 \appendix
 \clearpage
 \subimport{Back_matters}{lampiran}
+\end{comment}
 
 \clearpage
 \end{document}
