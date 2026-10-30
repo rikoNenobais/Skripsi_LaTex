@@ -1,0 +1,765 @@
+%======================== USD Thesis Template ==============================%
+% Made according to the guide, keeping in mind the guide was made for Word
+% TODO: Make a copy of this file that can be used right away once everything is done
+% TODO: Comment out whole sections that you do not use. i.e, you don't need Halaman Persetujuan at the start, so you can comment out stuff under %============Approval===========%
+\documentclass[oneside,12pt, a4paper]{book}
+
+
+\usepackage[english, indonesian, provide=*]{babel}
+\usepackage{titlesec} % Manage chapter and sections
+\usepackage{fontspec} % Manage fonts
+\usepackage{fancyhdr} % Manage header styles
+\usepackage{lipsum} % Lorem Ipsum
+\usepackage{graphicx} % to add images
+\usepackage[portrait, left=4cm, right=3cm, top=3cm, bottom=3cm]{geometry} % set margins
+\usepackage{indentfirst} % indents first line after section
+\usepackage{setspace}
+\usepackage{tocloft} % TOC modifications
+\usepackage{listings} % Allow writing code
+%\usepackage[newfloat]{minted}
+\usepackage{courier} % Code listing font family
+\usepackage{import} % used to import files from different directories
+\usepackage{float} % Adds more image float positions
+%\usepackage{pythontex} % Because
+\usepackage[numbib]{tocbibind}
+\usepackage[labelfont=bf, labelsep=period, justification=centering]{caption} % Manages captions. Changed to bold and separated using period
+\usepackage{pdfpages} % Allows adding pdfs as pages
+\usepackage{caption} % Used to create custom caption groups
+\usepackage{amsmath} % Package for math
+\usepackage{scrwfile} % used to edit the appendix toc
+\usepackage{hyperref} % Hyperlink for references
+\usepackage[toc, titletoc]{appendix} % For appendix-related things. Still not sure how to use it
+\usepackage{pgfplots} % For plotting graphs
+\usepackage{etoolbox} % Patching commands
+\usepackage{scrhack} % modify LoL listing
+%\usepackage[type=alledges]{fgruler} % shows ruler
+\usepackage{ragged2e}
+\usepackage{tikz-network} % Used to draw networks
+\usepackage{enumitem}[shortlabels] % Modifies lists
+\usepackage{subcaption} % Allows subfigures
+\usepackage{tikz} % for drawing images
+\usepackage{forest} % used to make directory tree
+\usepackage{pdflscape} % enable landscape for certain pages
+\usepackage[figuresleft]{rotating} % allows rotated floats
+\usepackage{tabularray} %table modifications
+\usepackage{longtable} % allows tables to be more than 1 page
+\usepackage{neuralnetwork} % used to draw neural networks
+\usepackage[table]{xcolor} % Allows cell colors
+\usepackage{pgffor} % Enable looping
+\usepackage{overpic}  % Adds image overlay
+\usepackage{icomma} % Adds comma for decimal numbering
+\usepackage{csvsimple-legacy} % Allows importing CSVs as tables
+\usepackage{pythontex}
+\usepackage{addfont}
+\usepackage{tabularx}
+\usepackage[some]{background}
+
+
+
+\NewTblrEnviron{newtblr}
+\SetTblrOuter[newtblr]{long}
+\SetTblrInner[newtblr]{
+%	hlines = {white}, column{1,2} = {co=1}, colsep = 5pt,
+	row{1} = {font=\bfseries\sffamily},
+	vline = {solid}
+}
+
+%TODO: Set title details
+%============================ Title details =================================%
+\def\title{TITLE}
+\def\englishtitle{ENGLISH TITLE}
+\def\author{NAME}
+\def\nim{NIM}
+\def\prodi{Informatika}
+\def\program{Informatics}
+\def\fakultas{Sains dan Teknologi}
+\def\faculty{Science and Technology}
+\def\sarjana{S. Kom}
+\def\pembimbing{PEMBIMBING}
+\def\ketuapenguji{KETUA PENGUJI}
+\def\sekretarispenguji{SEKRETARIS PENGUJI}
+\def\dekan{DEKAN}
+
+%============================= Document Imports =============================%
+
+
+%============================= Watermark ===================================%
+\backgroundsetup{hshift=0.2cm}
+\SetBgContents{\includegraphics{\detokenize{SANATA_DHARMA_yellow.png}}}
+\SetBgOpacity{0.5}
+\SetBgAngle{0}
+\SetBgScale{3}
+%============================= Citations ====================================%
+% Needs to make sure why \parencite doesn't return an author-year format
+% 	Solved. No need to use \parencite*, use regular \parencite
+\usepackage[
+	style=ieee
+	]{biblatex}
+%TODO: Set citation bib file
+\addbibresource{examplecitations.bib}
+
+
+
+%============================ Fonts ======================================%
+\setmainfont{Times New Roman}
+
+%============================ Tikz ===================%
+\usetikzlibrary{math}
+\usetikzlibrary{shapes.geometric, arrows}
+\newcommand\ppbb{path picture bounding box}
+
+
+% Tikz flowchart components
+\tikzstyle{startstop} = [rectangle, rounded corners, 
+minimum width=3cm, 
+minimum height=1cm,
+text centered, 
+draw=black, 
+fill=red!30]
+
+\tikzstyle{io} = [trapezium, 
+trapezium stretches=true,
+trapezium left angle=70, 
+trapezium right angle=110, 
+minimum width=3cm, 
+minimum height=1cm, text centered, 
+text width=3cm,
+draw=black, fill=blue!30]
+
+\tikzstyle{process} = [rectangle, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+text width=3cm, 
+draw=black, 
+fill=orange!30]
+
+\tikzstyle{decision} = [diamond, 
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+draw=black, 
+fill=green!30,
+text width=3cm,
+]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\tikzstyle{subprocess} = [rectangle,
+minimum width=3cm, 
+minimum height=1cm, 
+text centered, 
+draw=black, 
+fill=green!30,
+inner xsep=3mm,
+text width=4cm,
+path picture={\draw
+	([xshift =2mm] \ppbb.north west) -- ([xshift= 2mm] \ppbb.south west)
+	([xshift=-2mm] \ppbb.north east) -- ([xshift=-2mm] \ppbb.south east);
+};
+]
+
+
+%============================ Lists ===================%
+\setlist[enumerate,1]{leftmargin=0.6in, labelwidth=0.5in}
+\setlist[enumerate]{itemsep=-5pt}
+
+%========================== Page Numbering =================================%
+% Use fancyhdr styles
+\pagestyle{fancy}
+
+% Header settings
+\fancyhead[L, C]{} 									% Resets the left and center header to show nothing
+\renewcommand{\headrulewidth}{0pt} 					% removes the header line
+\fancyhead[R]{\thepage} 							% Shows page number on the right side of header. \thepage is the page number variable
+
+% Footer settings
+\fancyfoot{}				 						% Clears settings
+\fancyfoot[L]{} 						% shows up even if page doesn't have numbering
+
+% alter chapter-page numbering
+\fancypagestyle{plain}{								% In fancyhrd, chapter pages use the plain style. Modify this to modify page numbering for chapter pages
+	\fancyhf{} % resets page numbering for plain style
+	\fancyfoot[R]{\thepage} % sets page number to the top right of the page
+
+}
+
+%======================== Indent modifications ==============%
+\setlength{\parindent}{0.5in}  % Custom indentation for all paragraphs
+
+%======================== Table modifications ==============%
+\DefTblrTemplate{contfoot-text}{default}{\textit{Dilanjutkan di halaman selanjutnya}}
+\DefTblrTemplate{caption-tag}{default}{\textbf{Tabel\hspace{0.25em}\thetable}}
+\DefTblrTemplate{caption-sep}{default}{:\enskip}
+\DefTblrTemplate{caption-text}{default}{\normalfont{\InsertTblrText{caption}}}
+\DefTblrTemplate{conthead-text}{default}{\textit{Lanjutan}}
+
+%=================== Chapter numbering =====================%
+\setcounter{secnumdepth}{5}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+
+\titleformat % used to edit titles with titlesec
+	{\chapter} % which command to edit
+	[display] % shape
+	{\bfseries\large\centering} % format of the title
+	{\uppercase{Bab} \thechapter} % label
+	{0ex} % seperator
+	{\uppercase} % before-code
+	[\vspace{0px}] % after-code
+
+\titlespacing*{\chapter}{0pt}{-30pt}{10pt}
+
+% For sections - adjust the 0.3in value to change spacing between number and title
+\titleformat{\section}[block]{\bfseries\normalsize}{\thesection}{0.3in}{}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+%\titleformat{\section}[block]{\bfseries\large\makebox[2cm][r]{\thesection}}{10pt}{10pt}
+
+% For subsections
+\titleformat{\subsection}[block]{\bfseries\normalsize}{\thesubsection}{0.2in}{}
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+
+% For subsubsections
+\titleformat{\subsubsection}[block]{\bfseries\normalsize}{\thesubsubsection}{0.2in}{}
+\titlespacing*{\subsubsection}{0pt}{0pt}{0pt}
+
+%================== Quote modifications =============%
+\renewenvironment{quote} {% Quotes are internally lists, somehow. Probably unmarked list
+	\list{}{%
+		\leftmargin0.5in   % this is the adjusting margin
+		\rightmargin0cm
+	}
+	\item\relax
+}
+{\endlist}
+
+
+%=================== Appendix modifications ===============%
+% Create new environment for appendix
+% source: https://tex.stackexchange.com/questions/184103/how-to-define-a-custom-environment-caption-for-table-of-contents
+
+
+%================== Graph Modifications
+\pgfplotsset{width=10cm, compat=1.9}
+
+\usepgfplotslibrary{external}
+
+
+
+%============= Caption label modifications ==============%
+\captionsetup{format=hang}
+\renewcommand{\figurename}{Gambar}
+\renewcommand{\tablename}{Tabel}
+
+
+\captionsetup[table]{singlelinecheck=false}
+
+\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
+\AtBeginDocument{
+	\renewcommand{\thelstlisting}{\arabic{chapter}.\arabic{lstlisting}}
+}
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+
+\numberwithin{equation}{chapter}
+\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
+
+%\captionsetup{belowskip=-20pt}
+%================== Code block modifications =============%
+% TODO: Maybe find a way to add colors
+\lstset{
+	lineskip=-0.8ex,
+	aboveskip=2ex,
+	basicstyle=\small,
+	xleftmargin=30px,
+	numbers=left,
+	numberstyle=\tiny,
+	showstringspaces=false,
+	breaklines=true,
+	commentstyle=\color{gray},
+	keywordstyle=\color{magenta},
+	numberstyle=\color{gray},
+	stringstyle=\color{violet},
+	postbreak=\mbox{\textcolor{lightgray}{$\hookrightarrow$}\space},
+}
+
+\addfont{OT1}{cmpica}{\pica}
+
+%\newenvironment{code}{\captionsetup{type=listing}}{}
+%\SetupFloatingEnvironment{listing}{%
+%	name={Listing},
+%	fileext=lol}
+%\renewcommand{\cftlistingpresnum}{Listing~}
+%\setlength{\cftlistingnumwidth}{2cm}
+%============= Table of contents modifications ==========%
+% TODO: Enabling daftar lampiran makes links of other stuff broken.
+
+% Create new list of lampiran using tocloft
+%\newlistof{lampiran}{lamp}{Daftar Lampiran}
+%\DeclareFloatingEnvironment[
+%fileext=lamp,
+%listname={Daftar Lampiran},
+%placement=htpb,
+%within=chapter,
+%chapterlistsgaps=on
+%]
+%{lampiran}
+
+\setcounter{tocdepth}{1}											% Sets depth of entries shown on ToC. 0 means only up to chapters
+
+
+%***** ToC title modifications
+\renewcommand{\contentsname}{DAFTAR ISI}							% Changes ToC title
+\renewcommand{\listfigurename}{DAFTAR GAMBAR}
+%\renewcommand{\lstlistlistingname}{DAFTAR LISTING}
+\renewcommand{\listtablename}{DAFTAR TABEL}
+
+\renewcommand{\cfttoctitlefont}{\hfill\Large\bfseries}				% Changes style of ToC title. Sets left side to fill horizontal, Large font, bold
+\renewcommand{\cftaftertoctitle}{\hfill}							% Sets to fill horizontal so the text is in the middle
+\renewcommand{\cftloftitlefont}{\hfill\Large\bfseries}				% Figures
+\renewcommand{\cftafterloftitle}{\hfill}
+\renewcommand{\cftlottitlefont}{\hfill\Large\bfseries}				% Tables
+\renewcommand{\cftafterlottitle}{\hfill}
+
+%\renewcommand{\cftlamptitlefont}{\hfill\Large\bfseries}				% Lampiran
+%\renewcommand{\cftafterlamptitle}{\hfill}
+
+
+% TODO List of listing still not working with tocloft
+
+%****** TOC ENTRY MODIFICATIONS *******
+
+%***** TOC
+% Makes it so tocloft chapter accepts argument
+\makeatletter
+\patchcmd{\l@chapter}
+{\cftchapfont #1}%   search pattern
+{\cftchapfont {#1}}% replace by
+{}%                  success
+{}%                  failure
+\patchcmd{\l@section}
+{\cftsecfont #1}
+{\cftsecfont {#1}}
+{}
+{}
+\patchcmd{\l@subsection}
+{\cftsubsecfont #1}
+{\cftsubsecfont {#1}}
+{}
+{}
+\makeatother
+
+
+
+\renewcommand{\cftchappresnum}{BAB } 						% Adds the word "BAB " before toc chapter numbering
+\setlength\cftchapnumwidth{3.8em} 							% sets width of number box (adjusted so number doesn't overlap with chapter naming). If chapter has no number, then doesn't add word
+\renewcommand{\cftchapdotsep}{1} 							% Sets distance between dots
+\renewcommand{\cftsecdotsep}{1}
+\renewcommand{\cftsubsecdotsep}{1}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftchapdotsep}}	% Adds dots to chapter entry on toc
+\renewcommand\cftchapfont{\uppercase}						% Sets TOC entries as uppercase
+\renewcommand{\cftsecfont}{\uppercase}
+\renewcommand{\cftsubsecfont}{\uppercase}
+\renewcommand\cftchappagefont{}								% Sets font for the entries. Left empty so it removes bold. Can be adjusted for size
+
+%***** Figures
+\makeatletter
+\patchcmd{\l@figure}
+{\cftfigfont #1}
+{\cftfigfont {#1}}
+{}{}
+\makeatother
+
+\renewcommand{\cftfigpresnum}{GAMBAR }
+\setlength{\cftfignumwidth}{9em}
+\renewcommand{\cftfigdotsep}{1}
+\renewcommand{\cftfigleader}{\cftdotfill{\cftfigdotsep}}
+\renewcommand{\cftfigfont}{\uppercase}
+\renewcommand{\cftfigpagefont}{}
+\renewcommand{\cftfigindent}{0pt}
+
+
+%***** Tables
+\makeatletter
+\patchcmd{\l@table}
+{\cfttabfont #1}
+{\cfttabfont {#1}}
+{}{}
+\makeatother
+
+\renewcommand{\cfttabpresnum}{TABEL }
+\setlength{\cfttabnumwidth}{7em}
+\renewcommand{\cfttabdotsep}{1}
+\renewcommand{\cfttableader}{\cftdotfill{\cfttabdotsep}}
+\renewcommand{\cfttabfont}{\uppercase}
+\renewcommand{\cfttabpagefont}{}
+\renewcommand{\cfttabindent}{0pt}
+
+%***** Listing
+% TODO: Make listing's list integrate with tocloft
+
+%================ Bibiliography settings ============= %
+\AtBeginBibliography{\vspace*{20pt}}
+\setlength{\bibitemsep}{2\itemsep}
+
+%================ Start of document ==================%
+\begin{document}
+
+
+%================== Custom title page ================%
+% TODO: Check if title page is correct or not
+% \begin{titlepage}
+% 	\begin{center}
+% 		\large
+% 		\textbf{\MakeUppercase{\title}}
+% 		\vspace{2ex}
+
+
+% 		\textbf{SKRIPSI}
+
+% 		\vspace{2ex}
+
+% 		Diajukan untuk memenuhi salah satu syarat memeroleh gelar Sarjana \sarjana \\Program Studi \prodi
+
+
+% 		\vspace{3cm}
+% 		\includegraphics[width=5cm]{SANATA_DHARMA.jpg}\\
+% 		\vspace{1.5cm}
+% 		Disusun oleh:\\
+% 		\author\\
+% 		NIM: \nim\\
+
+% 		\vspace{2cm}
+
+% 		\textbf{
+% 			\MakeUppercase{
+% 				Program Studi \prodi\\
+% 				Fakultas \fakultas\\
+% 				Universitas Sanata Dharma\\
+% 				Yogyakarta\\
+% 				\the\year{}\\
+% 			}
+% 		}
+% 	\end{center}
+% \end{titlepage}
+
+
+
+%=================== Front matters =======================%
+% Bastracts, page of thanks, table of content/figures/etc
+\frontmatter
+%=====================Inner title==========================%
+
+
+%======================English Title======================%
+% \clearpage
+% \begin{center}
+% 	\large
+% 	\textbf{\MakeUppercase{\englishtitle}}
+% 	\vspace{2ex}
+	
+	
+% 	\textbf{THESIS}
+	
+% 	\vspace{2ex}
+	
+% 	Presented as a requirement
+% 	\\to obtain the title of \textit{Sarjana \sarjana}
+% 	\\Informatics Study Program
+	
+% 	\vspace{3cm}
+% 	\includegraphics[width=5cm]{SANATA_DHARMA.jpg}\\
+% 	\vspace{1.5cm}
+% 	Written By:\\
+% 	\author\\
+% 	NIM: \nim\\
+	
+% 	\vspace{2cm}
+	
+% 	\textbf{
+% 		\MakeUppercase{
+% 			\program Study Program\\
+% 			Faculty of \faculty\\
+% 			Sanata Dharma University\\
+% 			Yogyakarta\\
+% 			\the\year{}\\
+% 		}
+% 	}
+% \end{center}
+
+
+%====================== Approval ==========================%
+%TODO: Change this to your own. Comment out if not used yet
+% \clearpage
+% \chapter{\centering Halaman Persetujuan Pembimbing}
+% \begin{center}
+	
+% %	\BgThispage
+% 	\vspace{1cm}
+% 	\textbf{SKRIPSI}\\
+% 	\vspace{0.5cm}
+% 	\large
+% 	\MakeMarkcase{\textbf{\title}}\\
+	
+% 	\vspace{6cm}
+% 	Disusun Oleh:\\
+% 	\author\\
+% 	NIM: \nim\\
+	
+	
+% 	\vspace{5cm}
+% 	\begin{tabularx}{\textwidth}{
+% 			>{\raggedright\arraybackslash}X
+% 			>{\centering\arraybackslash}X
+% 		}
+% 		Dosen Pembimbing,& \\
+% 		&\\
+% 		&\\
+% 		&\\
+% 		&\\
+% 		\pembimbing & <DATE OF DEFENSE>
+% 	\end{tabularx}
+% \end{center}
+
+
+%======================= Pengesahan =====================%
+
+% \clearpage
+% \chapter{\centering Halaman Pengesahan}
+% \begin{center}
+	
+% %	\BgThispage
+% 	\normalsize
+% 	\vspace{1cm}
+% 	\textbf{SKRIPSI}\\
+% 	\vspace{0.5cm}
+	
+% 	\MakeMarkcase{\textbf{\title}}\\
+	
+% 	\vspace{2cm}
+% 	Dipersiapkan dan ditulis oleh:\\
+% 	\author\\
+% 	NIM: \nim\\
+	
+% 	\vspace{2cm}
+% 	\textbf{SUSUNAN DEWAN PENGUJI}\\
+	
+	
+% 	\vspace{1cm}
+% 	\begin{tabularx}{\textwidth}{
+% 			>{\raggedright\arraybackslash}m{2cm}
+% 			>{\raggedright\arraybackslash}m{7cm}
+% 			>{\raggedright\arraybackslash}X
+% 		}
+% 		\renewcommand{\arraystretch}{2.3}
+% 		\textbf{JABATAN} &  \centering\textbf{NAMA LENGKAP} & \textbf{TANDA TANGAN}\\
+
+% 		Ketua (merangkap anggota) & \ketuapenguji & \\
+% 		& &\\
+% 		Sekretaris (merangkap anggota) & \sekretarispenguji & \\
+% 		& &\\
+% 		Anggota & \pembimbing & 
+% 	\end{tabularx}
+	
+% 	\vspace{3cm}
+	
+% 	\begin{tabularx}{\textwidth}{
+% 		>{\raggedright\arraybackslash}m{5cm}
+% 		>{\raggedleft\arraybackslash}X
+% 		}
+% 		& Yogyakarta, ..........................\\
+% 		& Fakultas Sains dan Teknologi \\
+% 		& Dekan,\\
+% 		&\\
+% 		&\\
+% 		&\\
+% 		& \dekan
+% 	\end{tabularx}
+% \end{center}
+
+
+%====================== Authenticity ===================%
+
+% \clearpage
+% \chapter{\centering HALAMAN PERNYATAAN KEASLIAN KARYA}
+% \begin{doublespace}
+% 	Saya menyatakan bahwa dengan sesungguhnya bahwa skripsi yang saya tulis ini tidak memuat karya atau bagian karya orang lain, kecuali yang telah disebutkan dalam kutipan dan daftar pustaka dengan mengikuti ketentuan sebagaimana layaknya karya ilmiah.
+	
+% 	Apabila di kemudian hari ditemukan indikasi plagiarisme dalam naskah ini, saya bersedia menanggung segala saksi sesuai peraturan dan perundang-undangan yang berlaku
+	
+% 	\vspace{5cm}
+% 	\begin{tabularx}{\textwidth}{
+% 			>{\raggedright\arraybackslash}m{7cm}
+% 			>{\raggedleft\arraybackslash}X
+% 		}
+% 		& Yogyakarta, ..........................\\
+% 		& Penulis,\\
+% 		&\\
+% 		&\\
+% 		& \author
+% 	\end{tabularx}
+% \end{doublespace}
+
+%====================== Publication ====================%
+% \clearpage
+% \chapter{\centering LEMBAR PERSETUJUAN PUBLIKASI}
+% \noindent Yang bertanda tangan di bawah ini, saya mahasiswa Universitas Sanata Dharma:
+% \begin{itemize}[label={}]
+% 	\item Nama\quad: \author
+% 	\item NIM\quad: \nim
+% \end{itemize}
+
+% \noindent Demi perkembangan ilmu pengetahuan, saya memerikan kepada Perpustakaan Universitas Sanata Dharma karya ilmiah saya yang berjudul:
+% \vspace{1cm}
+% \begin{center}
+% 	\textbf{"\title"}
+% \end{center}
+% \vspace{1cm}
+% \noindent beserta perangkat yang diperlukan (bila ada). Dengan demikian saya memberikan hak kepada Perpusatakaan Universitas Sanata Dharma baik untuk menyimpan, mngalihkan dalam bentuyk media lain, mengolah dalam bentuk pangkalan data, mendistribusikan secara terbatas, dan memublikasikannya di internet atau media lain untuk kepentingan akademis tanpa perlu meminta izin dari saya atau memberikan royalti kepada saya selama tetap mencantumkan nama saya sebagai penulis.
+
+% \vspace{2cm}
+% \noindent Demikian pernyataan ini saya buat dengan sebenarnya\\
+% \vspace{1cm}
+
+
+% %TODO: Add date
+% \noindent Dibuat di Yogyakarta\\
+% \noindent Pada tanggal: \\
+% Yang menyatakan,\\
+% \vspace{4cm}
+
+
+% \noindent \author
+%====================== Halaman Moto ======================%
+% \clearpage
+% \chapter{Halaman Motto}
+
+% \vspace{5cm}
+
+% %TODO: Add motto
+% \begin{center}
+
+% \end{center}
+
+%====================== Kata Pengantar =================%
+% \clearpage
+
+% \vspace{30pt}
+% \chapter{Kata Pengantar}
+% \vspace{10pt}
+
+% \begin{doublespace}
+
+% \subimport{Front_matters}{kata_pengantar}
+	
+% \end{doublespace}
+
+
+
+%======================= Abstrak ========================%
+%TODO: Add abstract
+% \clearpage
+% \chapter{\centering Abstrak}
+% \begin{quotation}
+% 	\noindent \subimport{Front_matters}{abstract}
+% \end{quotation}
+
+
+%=======================Abstract==========================%
+% \clearpage
+% \chapter{\centering Abstract}
+% \begin{quotation}
+% 	\noindent \subimport{Front_matters}{abstract_english}
+% \end{quotation}
+
+%====================== Table of contents number formatting ========================%
+
+% \setcounter{tocdepth}{2}
+% \renewcommand{\thechapter}{\Roman{chapter}} % Makes chapter numbering roman numeral
+% \clearpage
+% \tableofcontents
+
+% \setcounter{tocdepth}{2}
+% \renewcommand{\thechapter}{\arabic{chapter}} % Makes chapter numbering roman numeral
+% \clearpage
+% \listoffigures
+
+% \clearpage
+% \listoftables
+
+
+% \clearpage
+% \addcontentsline{toc}{chapter}{Daftar Lampiran}
+% \setcounter{tocdepth}{1}
+% %\listoflampiran
+
+% \renewcommand{\thechapter}{\Roman{chapter}} % Makes chapter numbering roman numeral
+
+
+
+%=================== Main part of document =================%
+% Chapters etc
+% TODO: Check if spacing is correct
+\mainmatter
+\justifying
+
+\begin{doublespace}
+
+% Pendahuluan - Importing from subdirectory
+
+%TODO: Set it so that it imports the right chapters
+\clearpage
+\subimport{Skripsi/Pendahuluan}{pendahuluan}
+% File is in Skripsi/Pendahuluan/pendahuluan.tex
+
+% \clearpage
+% \subimport{Skripsi/Landasan_Teori}{landasan_teori}
+
+% \clearpage
+% \subimport{Skripsi/Metode_Penelitian}{metode_penelitian}
+
+% \clearpage
+% \subimport{Skripsi/Hasil_Penelitian}{hasil_penelitian}
+
+% \clearpage
+% \subimport{Skripsi/Kesimpulan}{kesimpulan}
+
+
+% Importing from the same directory
+%\input{codeExample}
+%
+%
+%\input{different_document}
+%
+%
+%\subimport{New_Chapter}{another_one} % Imports from subdirectory
+
+
+\end{doublespace}
+%================= Back matters ===================%
+% Bibliography and attachments/appendices
+
+\backmatter
+\clearpage
+\printbibliography[
+heading=bibintoc, 
+title=DAFTAR PUSTAKA]
+
+\clearpage
+% This LLM statement is not required by the university, Nara wanted to put this for academic transparency.
+% It is not required to be in the thesis, but it is a good practice to include it.
+\textbf{Penggunaan \textit{Large Language Models}} Alat berjenis LLM digunakan untuk membantu pengkodean
+aplikasi, penulisan kalimat, serta pengkodean Latex.
+LLM tidak digunakan untuk membuat ide atau konsep penelitian yang ada pada skripsi ini.
+
+\appendix
+\clearpage
+\subimport{Back_matters}{lampiran}
+
+\clearpage
+\end{document}
+
+
+
+
+
+

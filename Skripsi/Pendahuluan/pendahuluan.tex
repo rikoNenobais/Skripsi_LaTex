@@ -1,0 +1,114 @@
+\chapter{Pendahuluan}
+
+\section{Latar Belakang}
+\label{sec:latar_belakang}
+Perkembangan \textit{Internet of Things} (IoT) dan perangkat \textit{mobile} meningkatkan kebutuhan terhadap layanan komputasi yang mampu memproses data dengan cepat. Namun, perangkat \textit{mobile} memiliki keterbatasan sumber daya komputasi dan energi. \textit{Mobile Edge Computing} (MEC) menjadi salah satu solusi dengan menyediakan sumber daya komputasi yang lebih dekat dengan pengguna. Melalui mekanisme \textit{task offloading}, tugas komputasi dapat dialihkan dari perangkat \textit{mobile} ke \textit{edge server} sehingga berpotensi mengurangi waktu pemrosesan dan penggunaan energi (Yousefpour \textit{et al.}, 2019; Acheampong \textit{et al.}, 2023).
+
+Meskipun demikian, keputusan \textit{task offloading} memiliki tantangan karena harus mempertimbangkan kondisi jaringan, beban server, dan antrean tugas. Ketika banyak perangkat mengirimkan tugas secara bersamaan, beban \textit{edge server} dapat meningkat sehingga menyebabkan keterlambatan atau tugas tidak selesai sebelum batas waktu (\textit{deadline}). Tang dan Wong (2022) mengusulkan pendekatan \textit{Deep Reinforcement Learning} (DRL) dengan kombinasi LSTM, \textit{Dueling} DQN, dan \textit{Double} DQN untuk mempelajari keputusan \textit{offloading}. Pendekatan tersebut mampu mengurangi \textit{task drop ratio} dan \textit{average delay} dalam skenario pengujian yang digunakan.
+
+Namun, kondisi \textit{workload} dalam lingkungan MEC tidak selalu tetap. Perubahan jumlah maupun karakteristik tugas yang datang dapat menyebabkan distribusi \textit{workload} berubah dari waktu ke waktu (\textit{non-stationary workload}). Perubahan ini dapat membuat kebijakan yang sebelumnya dipelajari menjadi kurang sesuai dengan kondisi lingkungan saat ini. Salah satu aspek yang memengaruhi kemampuan adaptasi agen DRL adalah keseimbangan \textit{exploration} dan \textit{exploitation}. Zhu \textit{et al.} (2022) mengembangkan \textit{self-adjusting deep Q-learning} yang memanfaatkan ketidakpastian model untuk menyesuaikan eksplorasi ketika lingkungan berubah. Sementara itu, Kumar dan Singh (2024) menerapkan \textit{adaptive epsilon-greedy} pada lingkungan keamanan IoT-\textit{Edge}. Kedua penelitian tersebut menunjukkan bahwa strategi eksplorasi adaptif telah dikaji, tetapi pada konteks permasalahan yang berbeda dari \textit{task offloading} MEC.
+
+Berdasarkan hal tersebut, penelitian ini berfokus pada evaluasi strategi \textit{exploration}--\textit{exploitation} dalam meningkatkan kemampuan adaptasi DRL untuk \textit{task offloading} pada lingkungan MEC dengan \textit{non-stationary workload}. Arsitektur LSTM-D3QN dipertahankan, sedangkan strategi eksplorasi menjadi variabel yang dibandingkan, yaitu \textit{epsilon-greedy}, \textit{adaptive epsilon-greedy}, dan eksplorasi berbasis ketidakpastian model. Evaluasi dilakukan pada beberapa pola perubahan \textit{workload} dengan memperhatikan \textit{task drop ratio}, \textit{average delay}, \textit{average cost}, dan waktu pemulihan (\textit{recovery time}). Dengan demikian, penelitian ini diharapkan dapat memberikan gambaran mengenai pengaruh strategi eksplorasi terhadap kemampuan adaptasi kebijakan DRL ketika menghadapi perubahan \textit{workload}.
+
+\section{Rumusan Masalah}
+\label{sec:rumusan_masalah}
+
+Berdasarkan latar belakang yang telah diuraikan, rumusan masalah dalam penelitian ini adalah:
+\begin{enumerate}
+	\item Bagaimana pengaruh perubahan pola \textit{workload non-stationary} terhadap kinerja algoritma LSTM-D3QN dalam melakukan \textit{task offloading} pada lingkungan \textit{Mobile Edge Computing}?
+	\item Bagaimana perbandingan kinerja strategi \textit{epsilon-greedy}, \textit{adaptive epsilon-greedy}, dan eksplorasi berbasis ketidakpastian model dalam menghadapi perubahan \textit{workload}?
+	\item Strategi eksplorasi manakah yang memiliki kemampuan adaptasi terbaik berdasarkan \textit{task drop ratio}, \textit{average delay}, \textit{average cost}, dan \textit{recovery time} setelah terjadi perubahan \textit{workload}?
+\end{enumerate}
+
+\section{Batasan Masalah}
+\label{sec:Batasan Masalah}
+\section{Tujuan Penelitian}
+\label{sec:Tujuan Penelitian}
+\section{Manfaat Penelitian}
+\label{sec:Manfaat Penelitian}
+\section{Metodologi Penelitian}
+\label{sec:Metodologi Penelitian}
+\section{Sistematika Penulisan}
+\label{sec:Sistematika Penulisan}
+
+
+% =========================================================================
+% Bagian contoh dari template bawaan (disimpan untuk referensi pembuatan tabel/gambar)
+% =========================================================================
+\begin{comment}
+\section{Tables}
+Tables use the \texttt{longtblr} environment so it can handle multi-page tables. 
+\begin{longtblr} 
+[caption={Table example},
+label={tab:exampleTable}]
+	{
+		colspec={ c c c }, % Column type
+		rowhead = 1, % Header row
+		row{1} = {font=\bfseries\sffamily}, % Header row styling
+		hlines,	vlines % Table lines
+	}
+	First & Second & Third \\
+	1 & 2 & 3
+\end{longtblr}
+
+
+\section{Images}
+Images will make use of the \texttt{images} environment with the [H] float in order to anchor it to its position in the page.
+\begin{figure}[H]
+	\centering
+	\includegraphics{\detokenize{SANATA_DHARMA.jpg}}
+	\caption{Image Example}
+	\label{fig:exampleFigure}
+\end{figure}
+
+\subsection{Subimages}
+Multiple images can be had in a single figure environment using the subfigure environment.
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.4\textwidth}
+		\centering
+		\includegraphics{\detokenize{SANATA_DHARMA.jpg}}
+		\caption{First Figure}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\centering
+		\includegraphics{\detokenize{SANATA_DHARMA.jpg}}
+		\caption{Second Figure}
+	\end{subfigure}
+	\caption{Subfigures.}
+\end{figure}
+
+\section{Labeling}
+Some environments can be labeled, such as tables and figures. There are several things to consider when creating labels. \texttt{longtblr} environments use parameters to define labels, which can be seen in the example below.
+
+\begin{lstlisting}
+\begin{longtblr} 
+	[caption={Table example},
+	 label={tab:exampleTable} <---------LABEL
+	]
+	{
+		colspec={ c c c }, % Column type
+		rowhead = 1, % Header row
+		row{1} = {font=\bfseries\sffamily}, % Header row styling
+		hlines,	vlines % Table lines
+	} 
+	First & Second & Third \\
+	1 & 2 & 3
+\end{longtblr}
+\end{lstlisting}
+
+\noindent which can be refered by calling \texttt{\detokenize{\ref{tab:exampleTable}}}. When called, it will look something like this: \ref{tab:exampleTable}. The reference does not contain the name of the object being refered, only the number. Therefore, it is best to include the name of the object, such as: Table \ref{tab:exampleTable}.
+
+Images are labeled using the \texttt{\detokenize{\label{}}} command. An example is shown below:
+
+\begin{lstlisting}
+\begin{figure}[H]
+	\centering
+	\includegraphics{\detokenize{SANATA_DHARMA.jpg}}
+	\caption{Image Example}
+	\label{fig:exampleFigure} <----------------LABEL
+\end{figure}
+\end{lstlisting}
+
+\noindent where refering to said label can be done with the afformentioned \texttt{\detokenize{\ref{}}} command. Subfigures can also be refered in this manner, so make use of it when you wish to do so.
+\end{comment}
