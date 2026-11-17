@@ -1,3 +1,5 @@
+% !TEX program = lualatex
+% !TEX root = main.tex
 %======================== USD Thesis Template ==============================%
 % Made according to the guide, keeping in mind the guide was made for Word
 % TODO: Make a copy of this file that can be used right away once everything is done
@@ -29,6 +31,8 @@
 \usepackage{pdfpages} % Allows adding pdfs as pages
 \usepackage{caption} % Used to create custom caption groups
 \usepackage{amsmath} % Package for math
+\usepackage{amssymb} % Mathematical symbols
+\usepackage{dsfont} % Blackboard bold digits (e.g., \mathds{1})
 \usepackage{scrwfile} % used to edit the appendix toc
 \usepackage{hyperref} % Hyperlink for references
 % \usepackage[hidelinks]{hyperref} % Hyperlink for references, hide links with [hidelinks]
@@ -58,6 +62,7 @@
 \usepackage{pythontex}
 \usepackage{addfont}
 \usepackage{tabularx}
+\usepackage{booktabs}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 \usepackage[some]{background}
@@ -115,14 +120,8 @@ For glossaries to work, we also need to compile with makeglossaries, so in VSCod
 
 %TODO: Set title details
 %============================ Title details =================================%
-\def\title{Adaptive Exploration Strategies in
-Deep Reinforcement Learning for
-Task Offloading under Non-Stationary
-Workloads in Mobile Edge Computing}
-\def\englishtitle{Adaptive Exploration Strategies in
-Deep Reinforcement Learning for
-Task Offloading under Non-Stationary
-Workloads in Mobile Edge Computing}
+\def\title{Strategi Eksplorasi Adaptif untuk \textit{Task Offloading} Berbasis \textit{Deep Reinforcement Learning} pada Beban Kerja Nonstasioner di \textit{Mobile Edge Computing}.}
+\def\englishtitle{Adaptive Exploration Strategies for Deep Reinforcement Learning-Based Task Offloading under Non-Stationary Workloads in Mobile Edge Computing}
 \def\author{Benrycho Willyam R. Nenobais}
 \def\nim{235314159}
 \def\prodi{Informatika}
@@ -151,7 +150,6 @@ Workloads in Mobile Edge Computing}
 \usepackage[style=ieee]{biblatex}
 { \DeclareLanguageMapping{indonesian}{indonesian} } % map babel 'indonesian' -> indonesian.lbx
 { \AtBeginBibliography{\selectlanguage{indonesian}} } % pastikan daftar pustaka pakai string dlm LBX
-\addbibresource{examplecitations.bib}
 \addbibresource{Skripsi/Daftar_Pustaka/daftar_pustaka.bib}
 
 
@@ -592,6 +590,9 @@ path picture={\draw
 \emergencystretch=\maxdimen
 \hyphenpenalty=10000
 \hbadness=10000
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
 
 %================ Bibiliography settings ============= %
 \AtBeginBibliography{\vspace*{20pt}}
@@ -1048,8 +1049,8 @@ Put your Motto here.\\
 % Bab lain dinonaktifkan sementara agar fokus di Bab 1.
 % Untuk mengaktifkannya kembali, cukup hapus tanda '%' di depan \clearpage dan \subimport.
 
-% \clearpage
-% \subimport{Skripsi/Landasan_Teori}{landasan_teori}
+\clearpage
+\subimport{Skripsi/Landasan_Teori}{landasan_teori}
 
 % \clearpage
 % \subimport{Skripsi/Metode_Penelitian}{metode_penelitian}

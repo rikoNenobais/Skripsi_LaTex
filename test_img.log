@@ -1,0 +1,177 @@
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023/Debian)  (format=lualatex 2026.10.30)  17 NOV 2026 15:34
+ restricted system commands enabled.
+**/tmp/test_img.tex
+(/tmp/test_img.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+Lua module: luaotfload 2023-08-31 3.26 Lua based OpenType font support
+Lua module: lualibs 2023-07-13 2.76 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2023-07-13 2.76 ConTeXt Lua libraries -- extended c
+ollection.
+luaotfload | load : FATAL ERROR
+luaotfload | load :   × Failed to load "fontloader" module "basics-gen".
+luaotfload | load :   × Error message:
+luaotfload | load :     × "...ive/texmf-dist/tex/luatex/luaotfload/luaotfload-i
+nit.lua:301: system : no writeable cache path, quiting"....ive/texmf-dist/tex/lu
+atex/luaotfload/luaotfload-init.lua:301: system : no writeable cache path, quiti
+ng
+stack traceback:
+	[C]: in function 'error'
+	...ive/texmf-dist/tex/luatex/luaotfload/luaotfload-init.lua:301: in function 'o
+s.exit'
+	.../texlive/texmf-dist/tex/luatex/luaotfload/luaotfload.lua:203: in local 'load
+_fontloader_module'
+	...ive/texmf-dist/tex/luatex/luaotfload/luaotfload-init.lua:303: in upvalue 'in
+it_main'
+	...ive/texmf-dist/tex/luatex/luaotfload/luaotfload-init.lua:590: in function 'l
+uaotfload-init.lua'
+	.../texlive/texmf-dist/tex/luatex/luaotfload/luaotfload.lua:322: in field 'main
+'
+	[\directlua]:1: in main chunk.
+<everyjob> ...ring \\def\string \\encodingdefault{OT1}')end }
+                                                  \let \f@encoding \encoding...
+l.1 
+  \documentclass{article}
+The lua interpreter ran into a problem, so the
+remainder of this lua chunk will be ignored.
+
+Inserting `tracingstacklevels' in `input_level_string'. (/usr/share/texlive/tex
+mf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+
+! Font \TU/lmr/m/n/10=[lmroman10-regular]:+tlig; at 10pt not loadable: metric da
+ta not found or bad.
+<to be read again> 
+relax 
+l.54 \normalsize
+              
+I wasn't able to read the size data for this font,
+so I will ignore the font specification.
+[Wizards can fix TFM files using TFtoPL/PLtoTF.]
+You might try inserting a different font spec;
+e.g., type `I\font<same font id>=<substitute font name>'.
+
+)
+\c@part=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen139
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: luatex.def on input line 107.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/luatex.def
+File: luatex.def 2022/09/22 v1.2d Graphics/color driver for luatex
+))
+\Gin@req@height=\dimen140
+\Gin@req@width=\dimen141
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
+File: l3backend-luatex.def 2024-01-04 L3 backend support: PDF output (LuaTeX)
+\l__color_backend_stack_int=\count193
+\l__pdf_internal_box=\box51
+)
+No file test_img.aux.
+
+\openout1 = test_img.aux
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 3.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 3
+.
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count194
+\scratchdimen=\dimen142
+\scratchbox=\box52
+\nofMPsegments=\count195
+\nofMParguments=\count196
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count197
+\MPscratchDim=\dimen143
+\MPnumerator=\count198
+\makeMPintoPDFobject=\count199
+\everyMPtoPDFconversion=\toks19
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+<picture/MEC Infrastructure_.png, id=1, 825.0825pt x 685.56125pt>
+File: picture/MEC Infrastructure_.png Graphic file (type png)
+<use picture/MEC Infrastructure_.png>
+Package luatex.def Info: picture/MEC Infrastructure_.png  used on input line 4.
+
+(luatex.def)             Requested size: 142.26378pt x 118.20714pt.
+
+[1
+
+
+Missing character: There is no 1 (U+0031) in font nullfont!
+<./picture/MEC Infrastructure_.png>] (./test_img.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+ ***********
+)
+
+Here is how much of LuaTeX's memory you used:
+ 1325 strings out of 476553
+ 100000,1977958 words of node,token memory allocated
+ 368 words of node memory still in use:
+   3 hlist, 1 vlist, 1 rule, 2 glue, 48 glue_spec, 1 write nodes
+   avail lists: 2:12,3:10,4:1,5:23,6:2,7:34,9:38
+ 23356 multiletter control sequences out of 65536+600000
+ 14 fonts using 591999 bytes
+ 57i,5n,62p,198b,125s stack positions out of 10000i,1000n,20000p,200000b,200000s
+Output written on test_img.pdf (1 page, 72447 bytes).
+
+PDF statistics: 9 PDF objects out of 1000 (max. 8388607)
+ 4 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 131072)
+ 1 words of extra memory for PDF output out of 10000 (max. 100000000)
+
